@@ -1,44 +1,27 @@
 <?php
-$err_msg = "";
-if (isset($_POST['login'])) {
+
+if (isset($_POST['signin'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
-  try {
-    $db = new PDO('mysql:host=localhost:dbname=sample', 'watanabe', 'root');
-    $sql = 'select count(*) from users where username=? and password=?';
-    $stmt = $db->prepare($sql);
-    $stmt->execute(array($username, $password));
-    $result = $stmt->fetch();
-    $stmt = null;
-    $db = null;
-    if ($result[0] != 0) {
-      header('Location: http://localhost:8080/home.php');
-      exit;
-    } else {
-      $err_msg = "ユーザ名またはパスワードが誤りです。";
-    }
-  } catch (PDOException $e) {
-    echo $e->getMessage();
-    exit;
-  }
+  echo $username . "<br>";
+  echo $password . "<br>";
 }
-?>
 
+?>
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="utf=8">
-  <title>ログイン画面</title>
+  <meta charset="UTF=8">
+  <title>新規登録画面</title>
 </head>
 <body>
 
-<h1>ログイン画面</h1>
+<h1>新規登録画面</h1>
 <form action="" method="POST">
   ユーザ名<input type="text" name="username" value=""><br>
   パスワード<input type="password" name="password" value=""><br>
-  <input type="submit" name="login" value="ログイン">
+  <input type="submit" name="signin" value="新規登録">
 </form>
-<a href="signin.html">新規登録</a>
 
 </body>
 </html>
