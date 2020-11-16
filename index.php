@@ -1,3 +1,4 @@
+<?
 $err_msg = "";
 if (isset($_POST['login'])) {
   $username = $_POST['username'];
@@ -21,7 +22,8 @@ if (isset($_POST['login'])) {
     exit;
   }
 }
-
+?>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf=8">
