@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
     $sql = 'select count(*) from users where username=? and password=?';
     $stmt = $db=prepare($sql);
     $stmt=execute(array($username, $password));
-    $result = $stmt->fetch();
+    $result = $stmt-fetch();
     $stmt = null;
     $db = null;
 ?>
@@ -22,7 +22,7 @@ if (isset($_POST['login'])) {
       $err_msg = "ユーザ名またはパスワードが誤りです。";
     }
   } catch (PDOException $e) {
-    echo $e->getMessage();
+    echo $e-getMessage();
     exit;
   }
 }
