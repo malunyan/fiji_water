@@ -8,13 +8,12 @@ if (isset($_POST['login'])) {
   try {
     $db = new PDO('mysql:host=localhost:dbname=sample', 'watanabe', 'root');
     $sql = 'select count(*) from users where username=? and password=?';
-    $stmt = $db=prepare($sql);
-    $stmt=execute(array($username, $password));
-    $result = $stmt-fetch();
+    $stmt = $db->prepare($sql);
+    $stmt->execute(array($username, $password));
+    $result = $stmt->fetch();
     $stmt = null;
     $db = null;
-?>
-<?php
+    
     if ($result[0] != 0) {
       header('Location: http://localhost:8080/home.php');
       exit;
@@ -22,7 +21,7 @@ if (isset($_POST['login'])) {
       $err_msg = "ユーザ名またはパスワードが誤りです。";
     }
   } catch (PDOException $e) {
-    echo $e-getMessage();
+    echo $e->getMessage();
     exit;
   }
 }
